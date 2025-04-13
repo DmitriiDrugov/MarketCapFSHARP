@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>F# Crypto App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <style>
+      .tooltip-container {
+        position: relative;
+        display: inline-block;
+      }
+    
+      .tooltip-box {
+        opacity: 0;
+        transform: translateY(-5px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 105%;
+        z-index: 100;
+        background-color: white;
+        padding: 10px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    
+      .tooltip-container:hover .tooltip-box {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    
+      .tooltip-box ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+    
+      .tooltip-box a {
+        color: #3273dc;
+        text-decoration: none;
+      }
+    
+      .tooltip-box a:hover {
+        text-decoration: underline;
+      }
+    </style>
+    
+  </head>
+
+  <body>
+    <section class="section">
+      <div class="container">
+        <div id="root"></div>
+      </div>
+    </section>
+    <script src="bundle.js"></script>
+  </body>
+</html>
