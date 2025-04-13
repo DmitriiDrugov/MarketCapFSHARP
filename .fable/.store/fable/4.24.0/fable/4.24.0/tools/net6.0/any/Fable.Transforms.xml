@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Fable.Transforms</name></assembly>
+<members>
+<member name="F:Fable.Core.CaseRules.KebabCase">
+<summary>
+ FooBar -&gt; foo-bar
+</summary>
+</member>
+<member name="F:Fable.Core.CaseRules.SnakeCaseAllCaps">
+<summary>
+ FooBar -&gt; FOO_BAR
+</summary>
+</member>
+<member name="F:Fable.Core.CaseRules.SnakeCase">
+<summary>
+ FooBar -&gt; foo_bar
+</summary>
+</member>
+<member name="F:Fable.Core.CaseRules.LowerFirst">
+<summary>
+ FooBar -&gt; fooBar
+</summary>
+</member>
+<member name="M:Fable.Path.getRelativeFileOrDirPath(System.Boolean,System.String,System.Boolean,System.String)">
+<summary>
+ Creates a relative path from one file or folder to another.
+</summary>
+</member>
+<member name="M:Fable.Path.isRelativePath(System.String)">
+<summary>
+ Checks if path starts with &quot;./&quot;, &quot;.\&quot; or &quot;..&quot;
+</summary>
+</member>
+<member name="M:Fable.Path.ensureFsExtension(System.String)">
+<summary>
+ If path belongs to a signature file (.fsi), replace the extension with .fs
+</summary>
+</member>
+<member name="M:Fable.List.zipSafe``2(Microsoft.FSharp.Collections.FSharpList{``0},Microsoft.FSharp.Collections.FSharpList{``1})">
+<summary>
+ Only zips first elements until length differs
+</summary>
+</member>
+<member name="M:Fable.List.isMultiple``1(Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Same as List.length xs &gt; 1 but doesn&apos;t calculate the whole length
+</summary>
+</member>
+<member name="M:Fable.CompilerExt.Compiler.SetLanguageUnsafe.Static(Fable.Language)">
+<summary>
+ Use this only once at the start of the program
+</summary>
+</member>
+<member name="M:Fable.Naming.buildNameWithoutSanitationFrom(System.String,System.Boolean,System.String,System.String)">
+<summary>
+ This helper is intended for instance and static members in fable-library library compiled from F# (FSharpSet, FSharpMap...)
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ExportSpecifier">
+<summary>
+ An exported variable binding, e.g., {foo} in export {foo} or {bar as foo} in export {bar as foo}.
+ The exported field refers to the name exported in the module.
+ The local field refers to the binding into the local module scope.
+ If it is a basic named export, such as in export {foo}, both exported and local are equivalent Identifier nodes;
+ in this case an Identifier node representing foo. If it is an aliased export, such as in export {bar as foo},
+ the exported field is an Identifier node representing foo, and the local field is an Identifier node representing bar.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ImportSpecifier.ImportNamespaceSpecifier">
+<summary>
+ A namespace import specifier, e.g., * as foo in import * as foo from &quot;mod&quot;.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ImportSpecifier.ImportDefaultSpecifier">
+<summary>
+ A default import specifier, e.g., foo in import foo from &quot;mod&quot;.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ImportSpecifier.ImportMemberSpecifier">
+<summary>
+ e.g., import foo from &quot;mod&quot;;.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ImportSpecifier">
+<summary>
+ An imported variable binding, e.g., {foo} in import {foo} from &quot;mod&quot; or {foo as bar} in import {foo as bar} from &quot;mod&quot;.
+ The imported field refers to the name of the export imported from the module.
+ The local field refers to the binding imported into the local module scope.
+ If it is a basic named import, such as in import {foo} from &quot;mod&quot;, both imported and local are equivalent Identifier nodes; in this case an Identifier node representing foo.
+ If it is an aliased import, such as in import {foo as bar} from &quot;mod&quot;, the imported field is an Identifier node representing foo, and the local field is an Identifier node representing bar.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.AbstractMember">
+<summary>
+ When passing a VariableDeclaration, the bound value must go through
+ the `right` parameter instead of `init` property in VariableDeclarator
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.CatchClause">
+<summary>
+ A catch clause following a try block.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.SwitchCase">
+<summary>
+ A case (if test is an Expression) or default (if test === null) clause in the body of a switch statement.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.BlockStatement">
+<summary>
+ A block statement, i.e., a sequence of statements surrounded by braces.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.Program">
+<summary>
+ A complete program source tree.
+ Parsers must specify sourceType as &quot;module&quot; if the source has been parsed as an ES6 module.
+ Otherwise, sourceType must be &quot;script&quot;.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.Identifier">
+<summary>
+ Note that an identifier may be an expression or a destructuring pattern.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ModuleDeclaration.ExportDefaultDeclaration">
+<summary>
+ An export default declaration, e.g., export default function () {}; or export default 1;.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ModuleDeclaration.ExportNamedDeclaration">
+<summary>
+ An export isNamed declaration, e.g., export {foo, bar};, export {foo} from &quot;mod&quot;; or export var foo = 1;.
+ Note: Having declaration populated with non-empty specifiers or non-null source results in an invalid state.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.ModuleDeclaration">
+<summary>
+ A module import or export declaration.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.Declaration">
+<summary>
+ Note that declarations are considered statements; this is because declarations can appear in any statement context.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.Statement.DebuggerStatement">
+<summary>
+ An expression statement, i.e., a statement consisting of a single expression.
+</summary>
+</member>
+<member name="T:Fable.AST.Babel.Expression">
+<summary>
+ Since the left-hand side of an assignment may be any expression in general, an expression can also be a pattern.
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Statement.labeledStatement.Static(Fable.AST.Babel.Identifier,Fable.AST.Babel.Statement)">
+<summary>
+ Statement (typically loop) prefixed with a label (for continue and break)
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Statement.breakStatement.Static(Microsoft.FSharp.Core.FSharpOption{Fable.AST.Babel.Identifier},Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ Break can optional take a label of a loop to break
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Expression.memberExpression.Static(Fable.AST.Babel.Expression,Fable.AST.Babel.Expression,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ If isComputed is true, the node corresponds to a isComputed (a[b]) member expression and property is an Expression.
+ If isComputed is false, the node corresponds to a static (a.b) member expression and property is an Identifier.
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Expression.arrowFunctionExpression.Static(Fable.AST.Babel.Parameter[],Fable.AST.Babel.BlockStatement,Microsoft.FSharp.Core.FSharpOption{Fable.AST.Babel.TypeAnnotation},Microsoft.FSharp.Core.FSharpOption{Fable.AST.Babel.TypeParameter[]},Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ A fat arrow function expression, e.g., let foo = (bar) =&gt; { body }
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Expression.sequenceExpression.Static(Fable.AST.Babel.Expression[],Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ A comma-separated sequence of expressions.
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Expression.thisExpression.Static(Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ A super pseudo-expression.
+</summary>
+</member>
+<member name="M:Fable.AST.Babel.Helpers.Expression.callExpression.Static(Fable.AST.Babel.Expression,Fable.AST.Babel.Expression[],Microsoft.FSharp.Core.FSharpOption{Fable.AST.Babel.TypeAnnotation[]},Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ A function or method call expression.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Name">
+<summary>
+ A variable name. id holds the name as a string, and ctx is one of the following types.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Dict">
+<summary>
+ A dictionary. keys and values hold lists of nodes representing the keys and the values respectively, in matching
+ order (what would be returned when calling dictionary.keys() and dictionary.values()).
+
+ When doing dictionary unpacking using dictionary literals the expression to be expanded goes in the values list,
+ with a None at the corresponding position in keys.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;{&quot;a&quot;:1, **d}&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Dict(
+         keys=[
+             Constant(value=&apos;a&apos;),
+             None],
+         values=[
+             Constant(value=1),
+             Name(id=&apos;d&apos;, ctx=Load())]))
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Set">
+<summary>
+ A set. elts holds a list of nodes representing the set’s elements.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;{1, 2, 3}&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Set(
+         elts=[
+             Constant(value=1),
+             Constant(value=2),
+             Constant(value=3)]))
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.List">
+<summary>
+ A list or tuple. elts holds a list of nodes representing the elements. ctx is Store if the container is an
+ assignment target (i.e. (x,y)=something), and Load otherwise.
+
+ ```python
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;[1, 2, 3]&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=List(
+         elts=[
+             Constant(value=1),
+             Constant(value=2),
+             Constant(value=3)],
+         ctx=Load()))
+```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Tuple">
+<summary>
+ A tuple. elts holds a list of nodes representing the elements. ctx is Store if the container is an assignment target
+ (i.e. (x,y)=something), and Load otherwise.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;(1, 2, 3)&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Tuple(
+         elts=[
+             Constant(value=1),
+             Constant(value=2),
+             Constant(value=3)],
+         ctx=Load()))
+```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Lambda">
+<summary>
+ lambda is a minimal function definition that can be used inside an expression. Unlike FunctionDef, body holds a
+ single node.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;lambda x,y: ...&apos;), indent=4))
+ Module(
+     body=[
+         Expr(
+             value=Lambda(
+                 args=arguments(
+                     posonlyargs=[],
+                     args=[
+                         arg(arg=&apos;x&apos;),
+                         arg(arg=&apos;y&apos;)],
+                     kwonlyargs=[],
+                     kw_defaults=[],
+                     defaults=[]),
+                 body=Constant(value=Ellipsis)))],
+     type_ignores=[])
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.IfExp">
+<summary>
+ An expression such as a if b else c. Each field holds a single node, so in the following example, all three are Name nodes.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;a if b else c&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=IfExp(
+         test=Name(id=&apos;b&apos;, ctx=Load()),
+         body=Name(id=&apos;a&apos;, ctx=Load()),
+         orelse=Name(id=&apos;c&apos;, ctx=Load())))
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Call">
+<summary>
+ A function call. func is the function, which will often be a Name or Attribute object. Of the arguments:
+
+     args holds a list of the arguments passed by position.
+
+     keywords holds a list of keyword objects representing arguments passed by keyword.
+
+ When creating a Call node, args and keywords are required, but they can be empty lists. starargs and kwargs are optional.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;func(a, b=c, *d, **e)&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Call(
+         func=Name(id=&apos;func&apos;, ctx=Load()),
+         args=[
+             Name(id=&apos;a&apos;, ctx=Load()),
+             Starred(
+                 value=Name(id=&apos;d&apos;, ctx=Load()),
+                 ctx=Load())],
+         keywords=[
+             keyword(
+                 arg=&apos;b&apos;,
+                 value=Name(id=&apos;c&apos;, ctx=Load())),
+             keyword(
+                 value=Name(id=&apos;e&apos;, ctx=Load()))]))
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.FormattedValue">
+<summary>
+ Node representing a single formatting field in an f-string. If the string contains a single formatting field and
+ nothing else the node can be isolated otherwise it appears in JoinedStr.
+
+ - value is any expression node (such as a literal, a variable, or a function call).
+ - conversion is an integer:
+   - -1: no formatting
+   - 115: !s string formatting
+   -  114: !r repr formatting
+   -  97: !a ascii formatting
+ - format_spec is a JoinedStr node representing the formatting of the value, or None if no format was specified. Both
+ conversion and format_spec can be set at the same time.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.UnaryOp">
+<summary>
+ A unary operation. op is the operator, and operand any expression node.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Compare">
+<summary>
+ A comparison of two or more values. left is the first value in the comparison, ops the list of operators, and
+ comparators the list of values after the first element in the comparison.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;1 &lt;= a &lt; 10&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Compare(
+         left=Constant(value=1),
+         ops=[
+             LtE(),
+             Lt()],
+         comparators=[
+             Name(id=&apos;a&apos;, ctx=Load()),
+             Constant(value=10)]))
+ `````
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Subscript">
+<summary>
+ A subscript, such as l[1]. value is the subscripted object (usually sequence or mapping). slice is an index, slice
+ or key. It can be a Tuple and contain a Slice. ctx is Load, Store or Del according to the action performed with the
+ subscript.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;l[1:2, 3]&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Subscript(
+         value=Name(id=&apos;l&apos;, ctx=Load()),
+         slice=Tuple(
+             elts=[
+                 Slice(
+                     lower=Constant(value=1),
+                     upper=Constant(value=2)),
+                 Constant(value=3)],
+             ctx=Load()),
+         ctx=Load()))
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Attribute">
+<summary>
+ Attribute access, e.g. d.keys. value is a node, typically a Name. attr is a bare string giving the name of the
+ attribute, and ctx is Load, Store or Del according to how the attribute is acted on.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;snake.colour&apos;, mode=&apos;eval&apos;), indent=4))
+ Expression(
+     body=Attribute(
+         value=Name(id=&apos;snake&apos;, ctx=Load()),
+         attr=&apos;colour&apos;,
+         ctx=Load()))
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Return">
+<summary>
+ A return statement.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;return 4&apos;), indent=4))
+ Module(
+     body=[
+         Return(
+             value=Constant(value=4))],
+     type_ignores=[])
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.ImportFrom">
+<summary>
+ Represents from x import y. module is a raw string of the ‘from’ name, without any leading dots, or None for
+ statements such as from . import foo. level is an integer holding the level of the relative import (0 means absolute
+ import).
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;from y import x,y,z&apos;), indent=4))
+ Module(
+     body=[
+         ImportFrom(
+             module=&apos;y&apos;,
+             names=[
+                 alias(name=&apos;x&apos;),
+                 alias(name=&apos;y&apos;),
+                 alias(name=&apos;z&apos;)],
+             level=0)],
+     type_ignores=[])
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Assert">
+<summary>
+ An assertion. test holds the condition, such as a Compare node. msg holds the failure message.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Import">
+<summary>
+ An import statement. names is a list of alias nodes.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;import x,y,z&apos;), indent=4))
+ Module(
+     body=[
+         Import(
+             names=[
+                 alias(name=&apos;x&apos;),
+                 alias(name=&apos;y&apos;),
+                 alias(name=&apos;z&apos;)])],
+     type_ignores=[])
+ `````
+</summary>
+</member>
+<member name="T:Fable.AST.Python.AsyncFunctionDef">
+<summary>
+ An async function definition.
+
+ - name is a raw string of the function name.
+ - args is a arguments node.
+ - body is the list of nodes inside the function.
+ - decorator_list is the list of decorators to be applied, stored outermost first (i.e. the first in the list will be
+   applied last).
+ - returns is the return annotation.
+ - type_comment is an optional string with the type annotation as a comment.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.NonLocal">
+<summary>
+ global and nonlocal statements. names is a list of raw strings.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;nonlocal x,y,z&apos;), indent=4))
+ Module(
+     body=[
+         Nonlocal(
+             names=[
+                 &apos;x&apos;,
+                 &apos;y&apos;,
+                 &apos;z&apos;])],
+     type_ignores=[])
+ `````
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Global">
+<summary>
+ global and nonlocal statements. names is a list of raw strings.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;global x,y,z&apos;), indent=4))
+ Module(
+     body=[
+         Global(
+             names=[
+                 &apos;x&apos;,
+                 &apos;y&apos;,
+                 &apos;z&apos;])],
+     type_ignores=[])
+
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.FunctionDef">
+<summary>
+ A function definition.
+
+ - name is a raw string of the function name.
+ - args is a arguments node.
+ - body is the list of nodes inside the function.
+ - decorator_list is the list of decorators to be applied, stored outermost first (i.e. the first in the list will be
+   applied last).
+ - returns is the return annotation.
+ - type_comment is an optional string with the type annotation as a comment.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Raise">
+<summary>
+ A raise statement. exc is the exception object to be raised, normally a Call or Name, or None for a standalone
+ raise. cause is the optional part for y in raise x from y.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;raise x from y&apos;), indent=4))
+ Module(
+     body=[
+         Raise(
+             exc=Name(id=&apos;x&apos;, ctx=Load()),
+             cause=Name(id=&apos;y&apos;, ctx=Load()))],
+     type_ignores=[])
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.If">
+<summary>
+ An if statement. test holds a single node, such as a Compare node. body and orelse each hold a list of nodes.
+
+ elif clauses don’t have a special representation in the AST, but rather appear as extra If nodes within the orelse
+ section of the previous one.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&quot;&quot;&quot;
+ ... if x:
+ ...    ...
+ ... elif y:
+ ...    ...
+ ... else:
+ ...    ...
+ ... &quot;&quot;&quot;), indent=4))
+ Module(
+     body=[
+         If(
+             test=Name(id=&apos;x&apos;, ctx=Load()),
+             body=[
+                 Expr(
+                     value=Constant(value=Ellipsis))],
+             orelse=[
+                 If(
+                     test=Name(id=&apos;y&apos;, ctx=Load()),
+                     body=[
+                         Expr(
+                             value=Constant(value=Ellipsis))],
+                     orelse=[
+                         Expr(
+                             value=Constant(value=Ellipsis))])])],
+     type_ignores=[])
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.ClassDef">
+<summary>
+ A class definition.
+
+ - name is a raw string for the class name
+ - bases is a list of nodes for explicitly specified base classes.
+ - keywords is a list of keyword nodes, principally for ‘metaclass’. Other keywords will be passed to the metaclass,
+   as per PEP-3115.
+ - starargs and kwargs are each a single node, as in a function call. starargs will be expanded to join the list of
+   base classes, and kwargs will be passed to the metaclass.
+ - body is a list of nodes representing the code within the class definition.
+ - decorator_list is a list of nodes, as in FunctionDef.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&quot;&quot;&quot;\
+ ... @decorator1
+ ... @decorator2
+ ... class Foo(base1, base2, metaclass=meta):
+ ...     pass
+ ... &quot;&quot;&quot;), indent=4))
+ Module(
+     body=[
+         ClassDef(
+             name=&apos;Foo&apos;,
+             bases=[
+                 Name(id=&apos;base1&apos;, ctx=Load()),
+                 Name(id=&apos;base2&apos;, ctx=Load())],
+             keywords=[
+                 keyword(
+                     arg=&apos;metaclass&apos;,
+                     value=Name(id=&apos;meta&apos;, ctx=Load()))],
+             body=[
+                 Pass()],
+             decorator_list=[
+                 Name(id=&apos;decorator1&apos;, ctx=Load()),
+                 Name(id=&apos;decorator2&apos;, ctx=Load())])],
+     type_ignores=[])
+```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.While">
+<summary>
+ A while loop. test holds the condition, such as a Compare node.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.For">
+<summary>
+ A for loop. target holds the variable(s) the loop assigns to, as a single Name, Tuple or List node. iter holds the
+ item to be looped over, again as a single node. body and orelse contain lists of nodes to execute. Those in orelse
+ are executed if the loop finishes normally, rather than via a break statement.
+
+ type_comment is an optional string with the type annotation as a comment.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Expr">
+<summary>
+ When an expression, such as a function call, appears as a statement by itself with its return value not used or
+ stored, it is wrapped in this container. value holds one of the other nodes in this section, a Constant, a Name, a
+ Lambda, a Yield or YieldFrom node.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.AnnAssign">
+<summary>
+ An assignment with a type annotation. target is a single node and can be a Name, a Attribute or a Subscript.
+ annotation is the annotation, such as a Constant or Name node. value is a single optional node. simple is a
+ boolean integer set to True for a Name node in target that do not appear in between parenthesis and are hence
+ pure names and not expressions.
+ https://docs.python.org/3/library/ast.html#ast.AnnAssign
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Assign">
+<summary>
+ An assignment. targets is a list of nodes, and value is a single node.
+
+ Multiple nodes in targets represents assigning the same value to each. Unpacking is represented by putting a Tuple
+ or List within targets.
+
+ type_comment is an optional string with the type annotation as a comment.
+ https://docs.python.org/3/library/ast.html#ast.Assign
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Arguments">
+<summary>
+ The arguments for a function.
+
+  - posonlyargs, args and kwonlyargs are lists of arg nodes.
+  - vararg and kwarg are single arg nodes, referring to the *args, **kwargs parameters.
+  - kwDefaults is a list of default values for keyword-only arguments. If one is None, the corresponding argument is
+    required.
+  - defaults is a list of default values for arguments that can be passed positionally. If there are fewer defaults,
+    they correspond to the last n arguments.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Arg">
+<summary>
+ A single argument in a list. arg is a raw string of the argument name, annotation is its annotation, such as a Str
+ or Name node.
+
+ - type_comment is an optional string with the type annotation as a comment
+</summary>
+</member>
+<member name="T:Fable.AST.Python.With">
+<summary>
+ A with block. items is a list of withitem nodes representing the context managers, and body is the indented block
+ inside the context.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.WithItem">
+<summary>
+ A single context manager in a with block. context_expr is the context manager, often a Call node. optional_vars is a
+ Name, Tuple or List for the as foo part, or None if that isn’t used.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Try">
+<summary>
+ try blocks. All attributes are list of nodes to execute, except for handlers, which is a list of ExceptHandler
+ nodes.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.ExceptHandler">
+<summary>
+ A single except clause. type is the exception type it will match, typically a Name node (or None for a catch-all
+ except: clause). name is a raw string for the name to hold the exception, or None if the clause doesn’t have as foo.
+ body is a list of nodes.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Alias">
+<summary>
+ Both parameters are raw strings of the names. asname can be None if the regular name is to be used.
+
+ ```py
+ &gt;&gt;&gt; print(ast.dump(ast.parse(&apos;from ..foo.bar import a as b, c&apos;), indent=4))
+ Module(
+     body=[
+         ImportFrom(
+             module=&apos;foo.bar&apos;,
+             names=[
+                 alias(name=&apos;a&apos;, asname=&apos;b&apos;),
+                 alias(name=&apos;c&apos;)],
+             level=2)],
+     type_ignores=[])
+ ```
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Statement">
+<summary>
+ https://docs.python.org/3/library/ast.html#statements
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Expression.Name">
+<summary>
+ A variable name. id holds the name as a string, and ctx is one of the following types.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Expression.Constant">
+<summary>
+ A constant value. The value attribute of the Constant literal contains the Python object it represents. The
+ values represented can be simple types such as a number, string or None, but also immutable container types
+ (tuples and frozensets) if all of their elements are constant.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Expression.Yield">
+<summary>
+ A yield expression. Because these are expressions, they must be wrapped in a Expr node if the value sent back is
+ not used.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Expression.YieldFrom">
+<summary>
+ A yield from expression. Because these are expressions, they must be wrapped in a Expr node if the value sent
+ back is not used.
+</summary>
+</member>
+<member name="T:Fable.AST.Python.Expression">
+<summary>
+ https://docs.python.org/3/library/ast.html#expressions
+</summary>
+</member>
+<member name="M:Fable.AST.Dart.Statement.tempVariableDeclaration(Fable.AST.Dart.Ident,Microsoft.FSharp.Core.FSharpOption{System.Boolean},Microsoft.FSharp.Core.FSharpOption{Fable.AST.Dart.Expression})">
+<summary>
+ Variables that won&apos;t be added to scope
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.typeEquals(System.Boolean,Fable.AST.Fable.Type,Fable.AST.Fable.Type)">
+<summary>
+ When strict is false doesn&apos;t take generic params into account (e.g. when solving SRTP)
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.argEquals(Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Ident},Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Used to compare arg idents of a lambda wrapping a function call
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.makeIdentExpr(System.String)">
+<summary>
+ ATTENTION: Make sure the ident name is unique
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.makeIdent(System.String)">
+<summary>
+ ATTENTION: Make sure the ident name is unique
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.makeTypedIdent(Fable.AST.Fable.Type,System.String)">
+<summary>
+ ATTENTION: Make sure the ident name is unique
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.mustWrapOption(Fable.AST.Fable.Type)">
+<summary>
+ For unit, unresolved generics or nested options or unknown types,
+ create a runtime wrapper. See fable-library-ts/Option.ts for more info.
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.|MaybeLambdaUncurriedAtCompileTime|(Fable.AST.Fable.Expr)">
+<summary>
+ Try to uncurry lambdas at compile time in dynamic assignments
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.|NestedLambda|_|(Fable.AST.Fable.Expr)">
+<summary>
+ Doesn&apos;t check the type of lambda body has same arity as discovered arguments
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.|NestedLambdaWithSameArity|_|(Fable.AST.Fable.Expr)">
+<summary>
+ Makes sure to capture the same number of args as the arity of the lambda
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.nestedLambda(System.Boolean,Fable.AST.Fable.Expr)">
+<summary>
+ Only matches lambda immediately nested within each other
+</summary>
+</member>
+<member name="M:Fable.Transforms.AST.flattenLambdaBodyWithTupleArgs(Fable.AST.Fable.Ident,Fable.AST.Fable.Expr)">
+<summary>
+ In lambdas with tuple arguments, F# compiler deconstructs the tuple before the next nested lambda.
+ This makes it harder to uncurry lambdas, so we try to move the bindings to the inner lambda.
+</summary>
+</member>
+<member name="M:Fable.Transforms.OverloadSuffix.getExtensionHash(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Type}})">
+<summary>
+ Used for extension members
+</summary>
+</member>
+<member name="T:Fable.Transforms.ReplacementsInject">
+<summary>
+ AUTOMATICALLY GENERATED - DO NOT TOUCH!
+</summary>
+</member>
+<member name="M:Fable.Transforms.Py.Replacements.makeMap(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,System.String,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},Fable.AST.Fable.Type)">
+<summary>
+ Adds comparer as last argument for map creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.Py.Replacements.makeSet(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,System.String,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},Fable.AST.Fable.Type)">
+<summary>
+ Adds comparer as last argument for set creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.Py.Replacements.booleanCompare(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr,Fable.AST.BinaryOperator)">
+<summary>
+ Boolean comparison operators like &lt;, &gt;, &lt;=, &gt;=
+</summary>
+</member>
+<member name="M:Fable.Transforms.Py.Replacements.compare(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr)">
+<summary>
+ Compare function that will call Util.compare or instance `CompareTo` as appropriate
+</summary>
+</member>
+<member name="M:Fable.Transforms.Py.Replacements.toInt(Fable.Compiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Conversion to integers (excluding longs and bigints)
+</summary>
+</member>
+<member name="M:Fable.Transforms.Py.Replacements.toFloat(Fable.Compiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Conversions to floating point
+</summary>
+</member>
+<member name="M:Fable.Transforms.Dart.Replacements.makeMap``1(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,System.String,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Type})">
+<summary>
+ Adds comparer as last argument for map creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.Dart.Replacements.makeSet``1(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,System.String,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Type})">
+<summary>
+ Adds comparer as last argument for set creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.Dart.Replacements.booleanCompare``1(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr,Fable.AST.BinaryOperator)">
+<summary>
+ Boolean comparison operators like &lt;, &gt;, &lt;=, &gt;=
+</summary>
+</member>
+<member name="M:Fable.Transforms.Dart.Replacements.toInt(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Conversion to integers (excluding longs and bigints)
+</summary>
+</member>
+<member name="M:Fable.Transforms.Dart.Replacements.toFloat(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Conversions to floating point
+</summary>
+</member>
+<member name="M:Fable.Transforms.JS.Replacements.makeMap(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,System.String,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},Fable.AST.Fable.Type)">
+<summary>
+ Adds comparer as last argument for map creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.JS.Replacements.makeSet(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,System.String,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},Fable.AST.Fable.Type)">
+<summary>
+ Adds comparer as last argument for set creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.JS.Replacements.booleanCompare(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr,Fable.AST.BinaryOperator)">
+<summary>
+ Boolean comparison operators like &lt;, &gt;, &lt;=, &gt;=
+</summary>
+</member>
+<member name="M:Fable.Transforms.JS.Replacements.compare(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr)">
+<summary>
+ Compare function that will call Util.compare or instance `CompareTo` as appropriate
+</summary>
+</member>
+<member name="M:Fable.Transforms.JS.Replacements.toInt(Fable.Compiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Conversion to integers (excluding longs and bigints)
+</summary>
+</member>
+<member name="M:Fable.Transforms.JS.Replacements.toFloat(Fable.Compiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Conversions to floating point
+</summary>
+</member>
+<member name="F:Fable.Transforms.Replacements.Util.AnonRecords.Allow.AlwaysAny">
+<summary>
+ Unlike `AnyIntoErased`, this allows all expressions of type `Any` in all interface properties.
+ (The other way is always allow: Expression of all Types fits into `Any`)
+</summary>
+</member>
+<member name="F:Fable.Transforms.Replacements.Util.AnonRecords.Allow.EnumIntoInt">
+<summary>
+ Enums in F# are uint32
+ -&gt; Allow into all int &amp; uint
+</summary>
+</member>
+<member name="M:Fable.Transforms.Replacements.Util.AnonRecords.fitsInterfaceIndexers(Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},System.String[],FSharp.Compiler.Symbols.FSharpEntity,Microsoft.FSharp.Collections.FSharpSet{System.String},Microsoft.FSharp.Collections.FSharpList{FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue})">
+<summary>
+ Returns errors
+</summary>
+</member>
+<member name="M:Fable.Transforms.Replacements.Util.AnonRecords.fitsInterfaceMembers(Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},System.String[],FSharp.Compiler.Symbols.FSharpEntity,Microsoft.FSharp.Collections.FSharpSet{System.String},Microsoft.FSharp.Collections.FSharpList{FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue})">
+<summary>
+ Returns: errors
+</summary>
+</member>
+<member name="M:Fable.Transforms.Replacements.Util.AnonRecords.fitsInto(Fable.Transforms.Replacements.Util.AnonRecords.Allow,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Type},Fable.AST.Fable.Type)">
+<summary>
+ Special Rules mostly for Indexers:
+     For direct interface member implementation we want to be precise (-&gt; exact_ish match)
+     But for indexer allow a bit more types like erased union with string field when indexer is string
+</summary>
+</member>
+<member name="M:Fable.Transforms.Replacements.Util.AnonRecords.collectTypes(FSharp.Compiler.Symbols.FSharpType)">
+<summary>
+ Returns for:
+ * `Ux&lt;...&gt;`: extracted types from `&lt;....&gt;`: `U2&lt;string,int&gt;` -&gt; `[String; Int]`
+ * `Option&lt;Ux&lt;...&gt;&gt;`: extracted types from `&lt;...&gt;`, then made Optional: `Option&lt;U2&lt;string,int&gt;&gt;` -&gt; `[Option String; Option Int]`
+ * &apos;normal&apos; type: `makeType`ed type: `string` -&gt; `[String]`
+     Note: Erased Unions (except handled `Ux&lt;...&gt;`) are reduced to `Any`
+
+ Extracting necessary: Erased Unions are reduced to `Any` -&gt; special handling for `Ux&lt;...&gt;`
+
+ Note: nested types aren&apos;t handled: `U2&lt;string, U&lt;int, float&gt;&gt;` -&gt; `[Int; Any]`
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.FsUnionCase.CompiledName(FSharp.Compiler.Symbols.FSharpUnionCase)">
+<summary>
+ FSharpUnionCase.CompiledName doesn&apos;t give the value of CompiledNameAttribute
+ We must check the attributes explicitly
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.transformOptionalArguments(Fable.Transforms.FSharp2Fable.IFableCompiler,Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ Removes optional arguments set to None in tail position
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.tryFindImplementingEntity(FSharp.Compiler.Symbols.FSharpEntity,System.String)">
+<summary>
+ Checks who&apos;s the actual implementor of the interface, this entity or any of its parents
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.tryEntityIdentMaybeGlobalOrImported(Fable.Compiler,Fable.AST.Fable.Entity)">
+<summary>
+ First checks if the entity is global or imported
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.entityIdentWithSuffix(Fable.Compiler,Fable.AST.Fable.EntityRef,System.String)">
+<summary>
+ We can add a suffix to the entity name for special methods, like reflection declaration
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.tryGlobalOrImportedMember(Fable.Compiler,Fable.AST.Fable.Type,FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue)">
+<summary>
+ Function used to check if calls must be replaced by global idents or direct imports
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.countNonCurriedParamsForSignature(FSharp.Compiler.Symbols.FSharpAbstractSignature)">
+<summary>
+ Same as `countNonCurriedParams` but applied to abstract signatures
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Util.countNonCurriedParams(FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue)">
+<summary>
+ Takes only the first CurriedParameterGroup into account.
+ If there&apos;s only a single unit parameter, returns 0.
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Identifiers.tryGetIdentFromScope(Fable.Transforms.FSharp2Fable.Context,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Microsoft.FSharp.Core.FSharpOption{Fable.AST.Fable.Type},FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue)">
+<summary>
+ Get corresponding identifier to F# value in current scope
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|CreateEvent|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ This matches the boilerplate generated to wrap .NET events from F#
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|ByrefArgToTupleOptimizedLet|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ This matches another boilerplate generated for TryGetValue/TryParse/DivRem (--crossoptimize-)
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|ByrefArgToTupleOptimizedTree|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ This matches another boilerplate generated for TryGetValue/TryParse/DivRem (--optimize+)
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|ByrefArgToTupleOptimizedIf|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ This matches the boilerplate generated for TryGetValue/TryParse/DivRem (--optimize+)
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|ByrefArgToTuple|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ This matches the boilerplate generated for TryGetValue/TryParse/DivRem (see #154, or #1744)
+ where the F# compiler automatically passes a byref arg and returns it as a tuple
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|RaisingMatchFailureExpr|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ Detects AST pattern of &quot;raise MatchFailureException()&quot;
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Patterns.|FSharpExprTypeFullName|_|(FSharp.Compiler.Symbols.FSharpExpr)">
+<summary>
+ DOES NOT check if the type is abbreviated, mainly intended to identify Fable.Core.Applicable
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Helpers.testInterfaceHierarchy(System.String,FSharp.Compiler.Symbols.FSharpType)">
+<summary>
+ Test if the name corresponds to this interface or anyone in its hierarchy
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Helpers.isModuleValueForDeclarations(FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue)">
+<summary>
+ Using memb.IsValue doesn&apos;t work for function values
+ (e.g. `let ADD = adder()` when adder returns a function)
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Helpers.transformStringEnum(Fable.Core.CaseRules,FSharp.Compiler.Symbols.FSharpUnionCase)">
+<summary>
+ Apply case rules to case name if there&apos;s no explicit compiled name
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Helpers.getMemberUniqueName(FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue)">
+<summary>
+ Used to identify members uniquely in the inline expressions dictionary
+</summary>
+</member>
+<member name="M:Fable.Transforms.FSharp2Fable.Helpers.getMemberDeclarationName(Fable.Compiler,FSharp.Compiler.Symbols.FSharpMemberOrFunctionOrValue)">
+<summary>
+ Returns the sanitized name for the member declaration and whether it has an overload suffix
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Babel.Util.transformDecisionTreeWithExtraSwitch(Fable.Transforms.Fable2Babel.IBabelCompiler,Fable.Transforms.Fable2Babel.Context,Microsoft.FSharp.Core.FSharpOption{Fable.Transforms.Fable2Babel.ReturnStrategy},Microsoft.FSharp.Collections.FSharpList{System.Tuple{Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Ident},Fable.AST.Fable.Expr}},Fable.AST.Fable.Expr)">
+<summary>
+ When several branches share target, first get the target index and bound values
+ and then add a switch to execute the actual targets
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Babel.Util.wrapIntExpression(Fable.AST.Fable.Type,Fable.AST.Babel.Expression)">
+<summary>
+ Wrap int expressions with `| 0` to help optimization of JS VMs
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Babel.Util.iife(Fable.Transforms.Fable2Babel.IBabelCompiler,Fable.Transforms.Fable2Babel.Context,Fable.AST.Fable.Expr)">
+<summary>
+ Immediately Invoked Function Expression
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Babel.Lib.jsConstructor(Fable.Transforms.Fable2Babel.IBabelCompiler,Fable.Transforms.Fable2Babel.Context,Fable.AST.Fable.Entity)">
+<summary>
+ Cannot be used for annotations (use `tryJsConstructorFor Annotation` instead)
+</summary>
+</member>
+<member name="M:Fable.Transforms.BabelPrinter.PrinterExtensions.Printer.PrintArrowFunctionExpression(Fable.Transforms.Printer.Printer,Fable.AST.Babel.Parameter[],Fable.AST.Babel.BlockStatement,Microsoft.FSharp.Core.FSharpOption{Fable.AST.Babel.TypeAnnotation},Fable.AST.Babel.TypeParameter[],Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation})">
+<summary>
+ A fat arrow function expression, e.g., let foo = (bar) =&gt; { body }
+</summary>
+</member>
+<member name="M:Fable.Transforms.BabelPrinter.PrinterExtensions.Printer.Print(Fable.Transforms.Printer.Printer,Fable.AST.Babel.SwitchCase)">
+<summary>
+ A case (if test is an Expression) or default (if test === null) clause in the body of a switch statement.
+</summary>
+</member>
+<member name="M:Fable.Transforms.BabelPrinter.PrinterExtensions.Printer.ComplexExpressionWithParens(Fable.Transforms.Printer.Printer,Fable.AST.Babel.Expression)">
+<summary>
+ Surround with parens anything that can potentially conflict with operator precedence
+</summary>
+</member>
+<member name="M:Fable.Transforms.BabelPrinter.PrinterExtensions.Printer.IsComplex(Fable.Transforms.Printer.Printer,Fable.AST.Babel.Expression)">
+<summary>
+ Should the expression be printed with parens when nested?
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Python.BoundVars">
+<summary>
+ Python specific, used for keeping track of existing variable bindings to
+ know if we need to declare an identifier as nonlocal or global.
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Python.ReturnStrategy.ResourceManager">
+<summary>
+ Return within a with-statement (to make sure we don&apos;t TC with statements)
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Python.ReturnStrategy.Return">
+<summary>
+ Return last expression
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Python.Util.transformDecisionTreeWithTwoSwitches(Fable.Transforms.Fable2Python.IPythonCompiler,Fable.Transforms.Fable2Python.Context,Microsoft.FSharp.Core.FSharpOption{Fable.Transforms.Fable2Python.ReturnStrategy},Microsoft.FSharp.Collections.FSharpList{System.Tuple{Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Ident},Fable.AST.Fable.Expr}},Fable.AST.Fable.Expr)">
+<summary>
+ When several branches share target create first a switch to get the target index and bind value
+ and another to execute the actual target
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Python.Util.iife(Fable.Transforms.Fable2Python.IPythonCompiler,Fable.Transforms.Fable2Python.Context,Fable.AST.Fable.Expr)">
+<summary>
+ Immediately Invoked Function Expression
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Python.Helpers.isProductiveStatement(Fable.AST.Python.Statement)">
+<summary>
+ A few statements in the generated Python AST do not produce any effect,
+ and should not be printed.
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Python.Helpers.clean(System.String)">
+<summary>
+ Replaces all &apos;$&apos; and `.`with &apos;_&apos;
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Python.Helpers.isOptional(Fable.AST.Fable.Ident[])">
+<summary>
+ Returns true if the first field type can be None in Python
+</summary>
+</member>
+<member name="M:Fable.Transforms.PythonPrinter.PrinterExtensions.Printer.ComplexExpressionWithParens(Fable.Transforms.Printer.Printer,Fable.AST.Python.Expression)">
+<summary>
+ Surround with parens anything that can potentially conflict with operator precedence
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Php.ReturnStrategy.Target">
+<summary>
+ used in decision tree when multiple cases result in the same code
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Php.ReturnStrategy.Do">
+<summary>
+ No return value
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Php.ReturnStrategy.Let">
+<summary>
+ The statement should define a new variable and assign it
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Php.ReturnStrategy.Return">
+<summary>
+ The statement should return the value
+</summary>
+</member>
+<member name="T:Fable.Transforms.Fable2Php.ReturnStrategy">
+<summary>
+ Return strategy for expression compiled as statements
+ F# is expression based, but some constructs have to be transpiled as
+ statements in other languages. This types indicates how the result
+ should be passed to the resto of the code.
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertArgs(Fable.Transforms.Fable2Php.IPhpCompiler,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr})">
+<summary>
+ convert a list of arguments
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertExpr(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.Expr)">
+<summary>
+ convert a Fable expression to a Php expression
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertTest(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.TestKind,Fable.AST.Php.PhpExpr)">
+<summary>
+ convert a test (expression that returns a boolean) to a Php construct
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertTypeRef(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.Type)">
+<summary>
+ convert fable type of Php type name for type comparison (instanceof)
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertRecord``1(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.ClassDecl,Fable.AST.Fable.Entity)">
+<summary>
+ creates Php class for a F# record
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertUnion(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.ClassDecl,Fable.AST.Fable.Entity)">
+<summary>
+ creates Php classes for an F# union type
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.convertSingleCaseUnion``1(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.ClassDecl,Fable.AST.Fable.Entity)">
+<summary>
+ creates the class for a F# single case union.
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.caseNameOfTag(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.Entity,System.Int32)">
+<summary>
+ find the case name from a Tag.
+ Used to instanciate DU cases as classes instances.
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.caseName(Fable.Transforms.Fable2Php.IPhpCompiler,Fable.AST.Fable.Entity,Fable.AST.Fable.UnionCase)">
+<summary>
+ generate name for DU case
+ For single case union, it just take the name
+ For multicase unions, it prepend the DU name (The same case name can be defined
+ in multiple DUs. In F# it is disambiguated by prefixing - DU.Case - This cannot
+ be done in Php)
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Php.fixName(System.String)">
+<summary>
+ fixes names generated by fable to be php safe
+</summary>
+</member>
+<member name="P:Fable.Transforms.Fable2Php.charCodeEx">
+<summary>
+ regex to replace &apos;$&apos; sign that is illegal in Php to &apos;_&apos;. It also convert spaces &apos;$0020&apos; as &apos;_&apos;
+</summary>
+</member>
+<member name="P:Fable.Transforms.Fable2Dart.Context.VarsDeclaredInScope">
+<summary>
+ Vars declared in current function scope
+</summary>
+</member>
+<member name="P:Fable.Transforms.Fable2Dart.Context.AssertedTypes">
+<summary>
+ Types asserted in a condition branch
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Dart.Util.transformDecisionTreeWithTwoSwitches(Fable.Transforms.Fable2Dart.IDartCompiler,Fable.Transforms.Fable2Dart.Context,Fable.Transforms.Fable2Dart.ReturnStrategy,Microsoft.FSharp.Collections.FSharpList{System.Tuple{Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Ident},Fable.AST.Fable.Expr}},Fable.AST.Fable.Expr)">
+<summary>
+ When several branches share target create first a switch to get the target index and bind value
+ and another to execute the actual target
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Dart.Util.convertCaptureStrategyIntoAssign(Fable.Transforms.Fable2Dart.IDartCompiler,Fable.Transforms.Fable2Dart.Context,Fable.AST.Fable.Type,Fable.Transforms.Fable2Dart.ReturnStrategy,Microsoft.FSharp.Core.FSharpOption{Fable.AST.Dart.Expression})">
+<summary>
+ Branching expressions like conditionals, decision trees or try catch cannot capture
+ the resulting expression at once so declare a variable and assign the potential results to it
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Dart.Util.transformGenArgs(Fable.Transforms.Fable2Dart.IDartCompiler,Fable.Transforms.Fable2Dart.Context,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Type})">
+<summary>
+ Discards Measure generic arguments
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Dart.Util.iife(Microsoft.FSharp.Collections.FSharpList{Fable.AST.Dart.Statement},Fable.AST.Dart.Expression)">
+<summary>
+ Immediately Invoked Function Expression
+</summary>
+</member>
+<member name="M:Fable.Transforms.Fable2Dart.Util.sanitizeMember(System.String)">
+<summary>
+ Fable doesn&apos;t currently sanitize attached members/fields so we do a simple sanitation here.
+ Should this be done in FSharp2Fable step?
+</summary>
+</member>
+<member name="M:Fable.Transforms.DartPrinter.PrinterExtensions.Printer.IsComplex(Fable.Transforms.Printer.Printer,Fable.AST.Dart.Expression)">
+<summary>
+ Should the expression be printed with parens when nested?
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Replacements.makeMap``2(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},``1)">
+<summary>
+ Adds comparer as last argument for map creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Replacements.makeSet``2(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Type,Microsoft.FSharp.Collections.FSharpList{Fable.AST.Fable.Expr},``1)">
+<summary>
+ Adds comparer as last argument for set creator methods
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Replacements.booleanCompare``1(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr,Fable.AST.BinaryOperator)">
+<summary>
+ Boolean comparison operators like &lt;, &gt;, &lt;=, &gt;=
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Replacements.compare``1(Fable.Transforms.FSharp2Fable.IFableCompiler,``0,Microsoft.FSharp.Core.FSharpOption{Fable.AST.SourceLocation},Fable.AST.Fable.Expr,Fable.AST.Fable.Expr)">
+<summary>
+ Compare function that will call Util.compare or instance `CompareTo` as appropriate
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Fable2Rust.Util.makeAsRef(Fable.Transforms.Rust.AST.Types.Expr)">
+<summary>
+ Calling this on an rc guarantees a &amp;T, regardless of if the Rc is a ref or not
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Fable2Rust.Util.makeClone(Fable.Transforms.Rust.AST.Types.Expr)">
+<summary>
+ This guarantees a new owned Rc&lt;T&gt;
+</summary>
+</member>
+<member name="M:Fable.Transforms.Rust.Fable2Rust.Util.sanitizeMember(System.String)">
+<summary>
+ Fable doesn&apos;t currently sanitize attached members/fields so we do a simple sanitation here.
+ Should this be done in FSharp2Fable step?
+</summary>
+</member>
+<member name="T:Fable.Transforms.State.CompilerImpl">
+<summary>
+ Type with utilities for compiling F# files to JS.
+ Not thread-safe, an instance must be created per file
+</summary>
+</member>
+</members>
+</doc>

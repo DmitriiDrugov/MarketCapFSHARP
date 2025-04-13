@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Fable.AST</name></assembly>
+<members>
+<member name="P:Fable.AST.SourceLocation.identifierName">
+<summary>
+ DO NOT USE, use DisplayName instead and Create for instantiation
+</summary>
+</member>
+<member name="T:Fable.AST.Position">
+<summary>
+ Each Position object consists of a line number (1-indexed) and a column number (0-indexed):
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.Operation">
+<summary>
+ Operations that can be defined with native operators
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.CurriedApply">
+<summary>
+ Application to local lambdas, function arguments will NOT be uncurried
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.Call">
+<summary>
+ Call to a type/module member, function arguments will be uncurried
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.Delegate">
+<summary>
+ Delegates are uncurried functions, can have none or multiple arguments
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.Lambda">
+<summary>
+ Lambdas are curried, they always have a single argument (which can be unit)
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.Value">
+<summary>
+ Common and literal values
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.Expr.IdentExpr">
+<summary>
+ Identifiers that reference another expression
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.UnresolvedExpr">
+<summary>
+ Unresolved expressions are used in precompiled inline functions.
+ They will be resolved in the call site where the context is available.
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.ExtendedSet.Curry">
+<summary>
+ Used in the uncurrying transformations, we&apos;ll try to remove the curried expressions
+ with beta reduction but in some cases it may be necessary to do it at runtime
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.ExtendedSet">
+<summary>
+ Instructions that are not coming from the F# AST but are used by Fable internally.
+</summary>
+</member>
+<member name="P:Fable.AST.Fable.FieldInfo.MaybeCalculated">
+<summary>
+ Indicates the field shouldn&apos;t be moved in beta reduction
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.ImportKind.UserImport">
+<summary>
+ `isInline` is automatically set to true after applying the arguments of an inline function whose body
+ is a user generated import, to allow patterns like the one in &quot;importDefault works with getters when inlined&quot; test
+</summary>
+</member>
+<member name="P:Fable.AST.Fable.ReplaceCallInfo.SignatureArgTypes">
+<summary>
+ See ArgInfo.SignatureArgTypes
+</summary>
+</member>
+<member name="P:Fable.AST.Fable.CallInfo.SignatureArgTypes">
+<summary>
+ Argument types as defined in the method signature, this may be slightly different to types of actual argument expressions.
+ E.g.: signature accepts &apos;a-&gt;&apos;b-&gt;&apos;c (2-arity) but we pass int-&gt;int-&gt;int-&gt;int (3-arity)
+ This is used for the uncurrying mechanism
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.ValueKind.StringTemplate">
+<summary>
+ String interpolation with support for JS tagged templates
+ String parts length should always be values.Length + 1
+</summary>
+</member>
+<member name="P:Fable.AST.Fable.MemberFunctionOrValue.IsProperty">
+<summary>
+ Indicates the member is a wrapper for a getter and/or setter,
+ it evals to false for the actual getter/setter methods
+</summary>
+</member>
+<member name="T:Fable.AST.Fable.EntityPath.CoreAssemblyName">
+<summary>
+ Only used to reference entities in core assemblies without a path
+</summary>
+</member>
+</members>
+</doc>

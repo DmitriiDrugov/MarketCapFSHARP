@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Fable.Compiler</name></assembly>
+<members>
+<member name="P:Fable.Compiler.CompileResult.Diagnostics">
+<summary>
+ Diagnostics of the entire checked F# project
+</summary>
+</member>
+<member name="P:Fable.Compiler.CompileResult.CompiledFiles">
+<summary>
+ A map of absolute file path to transpiled JavaScript
+</summary>
+</member>
+<member name="M:Fable.Compiler.Util.File.isDirectoryEmpty(System.String)">
+<summary>
+ FAKE and other tools clean dirs but don&apos;t remove them, so check whether it doesn&apos;t exist or it&apos;s empty
+</summary>
+</member>
+<member name="M:Fable.Compiler.Util.File.getExactFullPath(System.String)">
+<summary>
+ System.IO.GetFullPath doesn&apos;t change the case of the argument in case insensitive file systems
+ even if it doesn&apos;t match the actual path, causing unexpected issues when comparing files later.
+</summary>
+</member>
+<member name="M:Fable.Compiler.Util.File.readAllTextNonBlocking(System.String)">
+<summary>
+ File.ReadAllText fails with locked files. See https://stackoverflow.com/a/1389172
+</summary>
+</member>
+<member name="M:Fable.Compiler.Util.Log.setLogger(Fable.Verbosity,Microsoft.Extensions.Logging.ILogger)">
+<summary>
+ To be called only at the beginning of the app
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.Operators.op_BangBang(System.String)">
+<summary>
+ Includes a single pattern and scans the files - !! x = AllFilesMatching x
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.Operators.op_MinusMinus(Fable.Compiler.Globbing.IGlobbingPattern,System.String)">
+<summary>
+ Exclude operator
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.Operators.op_PlusPlus(Fable.Compiler.Globbing.IGlobbingPattern,System.String)">
+<summary>
+ Add Include operator
+</summary>
+</member>
+<member name="T:Fable.Compiler.Globbing.Operators">
+<summary>
+ Contains operators to find and process files.
+
+ ### Simple glob using as list
+
+     let csProjectFiles = !! &quot;src/*.csproj&quot;
+
+     for projectFile in csProjectFiles do
+         printf &quot;F# ProjectFile: %s&quot; projectFile
+
+ ### Combine globs
+
+     let projectFiles =
+         !! &quot;src/*/*.*proj&quot;
+         ++ &quot;src/*/*.target&quot;
+         -- &quot;src/*/*.vbproj&quot;
+
+     for projectFile in projectFiles do
+         printf &quot;ProjectFile: %s&quot; projectFile
+
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternModule.getBaseDirectoryIncludes(Fable.Compiler.Globbing.IGlobbingPattern)">
+<summary>
+ Get base include directories.
+
+ Used to get a smaller set of directories from a globbing pattern.
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternModule.setBaseDir(System.String,Fable.Compiler.Globbing.IGlobbingPattern)">
+<summary>
+ Sets a directory as baseDirectory for fileIncludes.
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternModule.createFrom(System.String)">
+<summary>
+ Start an empty globbing pattern from the specified directory
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternModule.create(System.String)">
+<summary>
+ Include files
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternExtensions.IGlobbingPattern.IsMatch(Fable.Compiler.Globbing.IGlobbingPattern,System.String)">
+<summary>
+ Checks if a particular file is matched
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternExtensions.IGlobbingPattern.SetBaseDirectory(Fable.Compiler.Globbing.IGlobbingPattern,System.String)">
+<summary>
+ Sets a directory as BaseDirectory.
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternExtensions.IGlobbingPattern.ButNot(Fable.Compiler.Globbing.IGlobbingPattern,System.String)">
+<summary>
+ Ignores files with the given pattern
+</summary>
+</member>
+<member name="M:Fable.Compiler.Globbing.GlobbingPatternExtensions.IGlobbingPattern.And(Fable.Compiler.Globbing.IGlobbingPattern,System.String)">
+<summary>
+ Adds the given pattern to the file includes
+</summary>
+</member>
+<member name="T:Fable.Compiler.Globbing.Glob">
+<summary>
+ Globbing support and operators
+
+ Forked from `Fake.IO.FileSystem`
+
+ This module contains a file pattern globbing implementation.
+</summary>
+</member>
+<member name="T:Fable.Compiler.ProjectCracker">
+<summary>
+ This module gets the F# compiler arguments from .fsproj as well as some
+ Fable-specific tasks like tracking the sources of Fable Nuget packages
+</summary>
+</member>
+<member name="M:Fable.Compiler.MSBuildCrackerResolverModule.mkOptionsFullPath(System.IO.FileInfo,System.String[])">
+<summary>
+ Transform F# files into full paths
+</summary>
+</member>
+<member name="M:Fable.Compiler.CodeServices.compileFileToJavaScript(Microsoft.FSharp.Core.FSharpFunc{System.String,System.Tuple{System.Int32,System.Lazy{System.String}}},FSharp.Compiler.SourceCodeServices.InteractiveChecker,Fable.Compiler.Util.PathResolver,Fable.Compiler.Util.CliArgs,Fable.Compiler.ProjectCracker.CrackerResponse,System.String)">
+<summary>
+ Type-checks the project up until the last transitive dependent file.
+ Compile the current and the transitive dependent files to JavaScript.
+</summary>
+</member>
+<member name="M:Fable.Compiler.CodeServices.compileMultipleFilesToJavaScript(Fable.Compiler.Util.PathResolver,Fable.Compiler.Util.CliArgs,Fable.Compiler.ProjectCracker.CrackerResponse,Fable.Compiler.TypeCheckProjectResult,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ And compile multiple files of a project to JavaScript.
+ The expected usage of this function is either every file in the project or only the user files.
+</summary>
+</member>
+<member name="M:Fable.Compiler.CodeServices.compileFileToFableAST(Microsoft.FSharp.Core.FSharpFunc{System.String,System.Tuple{System.Int32,System.Lazy{System.String}}},FSharp.Compiler.SourceCodeServices.InteractiveChecker,Fable.Compiler.Util.CliArgs,Fable.Compiler.ProjectCracker.CrackerResponse,System.String)">
+<summary>
+ Transform a file in a project to Fable.AST
+</summary>
+</member>
+<member name="M:Fable.Compiler.CodeServices.typeCheckProject(Microsoft.FSharp.Core.FSharpFunc{System.String,System.Tuple{System.Int32,System.Lazy{System.String}}},FSharp.Compiler.SourceCodeServices.InteractiveChecker,Fable.Compiler.Util.CliArgs,Fable.Compiler.ProjectCracker.CrackerResponse)">
+<summary>
+ Type check a project using the InteractiveChecker
+</summary>
+</member>
+</members>
+</doc>

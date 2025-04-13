@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>fable</name></assembly>
+<members>
+<member name="T:Fable.Cli.BuildalyzerCrackerResolver">
+<summary>
+ Use Buildalyzer to invoke MSBuild and get F# compiler args from an .fsproj file.
+ As we&apos;ll merge this later with other projects we&apos;ll only take the sources and
+ the references, checking if some .dlls correspond to Fable libraries
+</summary>
+</member>
+<member name="T:Fable.Cli.FileWatcher.DotnetFileWatcher">
+<summary>
+ A FileSystemWatcher wrapper that implements the IFileSystemWatcher interface.
+</summary>
+</member>
+<member name="T:Fable.Cli.FileWatcher.ResetablePollingFileWatcher">
+<summary>
+ A wrapper around the immutable polling watcher,
+ implementing IFileSystemWatcher with its mutable BasePath.
+</summary>
+</member>
+<member name="P:Fable.Cli.FileWatcher.PollingFileWatcher.EnableRaisingEvents(System.Boolean)">
+<summary>
+ Defaults to false. Must be set to true to start raising events.
+</summary>
+</member>
+<member name="P:Fable.Cli.FileWatcher.PollingFileWatcher.EnableRaisingEvents">
+<summary>
+ Defaults to false. Must be set to true to start raising events.
+</summary>
+</member>
+<member name="T:Fable.Cli.FileWatcher.PollingFileWatcher">
+<summary>
+ An alternative file watcher based on polling.
+ ignoredDirectoryNameRegexes allows ignoring directories to improve performance.
+</summary>
+</member>
+<member name="P:Fable.Cli.FileWatcher.IFileSystemWatcher.BasePath(System.String)">
+<summary>
+ Directory path
+</summary>
+</member>
+<member name="P:Fable.Cli.FileWatcher.IFileSystemWatcher.GlobFilters">
+<summary>
+ File name filters
+</summary>
+</member>
+<member name="P:Fable.Cli.FileWatcher.IFileSystemWatcher.BasePath">
+<summary>
+ Directory path
+</summary>
+</member>
+<member name="F:Fable.Cli.CustomLogging.CustomOptions.UseNoPrefixMsgStyle@">
+<summary>
+ if true: no LogLevel as prefix, colored output according to LogLevel
+ if false: LogLevel as prefix, no colored output
+</summary>
+</member>
+<member name="P:Fable.Cli.CustomLogging.CustomOptions.UseNoPrefixMsgStyle(System.Boolean)">
+<summary>
+ if true: no LogLevel as prefix, colored output according to LogLevel
+ if false: LogLevel as prefix, no colored output
+</summary>
+</member>
+<member name="P:Fable.Cli.CustomLogging.CustomOptions.UseNoPrefixMsgStyle">
+<summary>
+ if true: no LogLevel as prefix, colored output according to LogLevel
+ if false: LogLevel as prefix, no colored output
+</summary>
+</member>
+</members>
+</doc>
