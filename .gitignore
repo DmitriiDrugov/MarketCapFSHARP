@@ -1,0 +1,17 @@
+# Fable и Node
+node_modules/
+fable_modules/
+*.fs.js
+
+# dotnet
+bin/
+obj/
+
+# IDE
+.vscode/
+*.user
+*.suo
+
+# Mac / Linux / Windows
+.DS_Store
+Thumbs.db

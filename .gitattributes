@@ -1,0 +1,9 @@
+# Распознавать F# как основной язык
+*.fs linguist-language=F#
+
+# Не учитывать автоматически сгенерированные файлы
+*.fs.js linguist-generated
+
+# Не учитывать зависимости и системные директории
+fable_modules/** linguist-vendored
+node_modules/** linguist-vendored
