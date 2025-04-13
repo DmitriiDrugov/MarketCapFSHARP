@@ -1,8 +1,17 @@
 # Распознавать F# как основной язык
 *.fs linguist-language=F#
+*.fsx linguist-language=F#
+*.fsi linguist-language=F#
+*.fsproj linguist-language=F#
 
 # Не учитывать автоматически сгенерированные файлы
 *.fs.js linguist-generated
+*.js linguist-generated
+*.ts linguist-generated
+*.py linguist-generated
+*.php linguist-generated
+*.rs linguist-generated
+*.dart linguist-generated
 
 # Не учитывать зависимости и системные директории
 fable_modules/** linguist-vendored
