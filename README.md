@@ -1,6 +1,7 @@
 # 💰 MarketCapF#
 
 An interactive web application built with F# and Fable for viewing, comparing, and analyzing cryptocurrency data in real time.
+![{A2751AA4-075D-42F2-9981-D321B7F8F99B}](https://github.com/user-attachments/assets/cf08b34a-f3c4-48b1-9011-e83510190eaa)
 
 
 ## 🚀 Features
