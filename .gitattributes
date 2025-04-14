@@ -5,9 +5,6 @@
 *.fsproj linguist-language=F#
 
 # Не учитывать сгенерированные файлы
-*.fs.js linguist-generated
-*.js linguist-generated
-*.ts linguist-generated
 *.py linguist-generated
 *.php linguist-generated
 *.rs linguist-generated

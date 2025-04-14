@@ -4,8 +4,6 @@ obj/
 fable_modules/
 node_modules/
 
-# Generated JavaScript from Fable
-*.fs.js
 
 # VSCode/IDE
 .vscode/
