@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Model.fs" />
+    <Compile Include="Api.fs" />
+    <Compile Include="Update.fs" />
+    <Compile Include="View.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Elmish" Version="4.0.0" />
+    <PackageReference Include="Fable.Elmish.React" Version="4.0.0" />
+    <PackageReference Include="Feliz" Version="2.4.0" />
+    <PackageReference Include="Fable.SimpleHttp" Version="3.0.0" />
+    <PackageReference Include="Thoth.Json" Version="8.0.0" />
+    <PackageReference Include="Feliz.Bulma" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>
