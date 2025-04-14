@@ -15,7 +15,6 @@ import { FSharpSet__get_Count, FSharpSet__Contains } from "./fable_modules/fable
 export const tooltipContent = React_functionComponent_Z336EF691((coin) => {
     let elems_2;
     const qtyState = useFeliz_React__React_useState_Static_1505(1);
-    const setQuantity = qtyState[1];
     const quantity = qtyState[0];
     const currentValue = quantity * coin.current_price;
     return createElement("div", createObj(ofArray([["style", {
@@ -57,7 +56,7 @@ export const tooltipContent = React_functionComponent_Z336EF691((coin) => {
                 if (!(value_34 == null) && !Number.isNaN(value_34)) {
                     const v = value_34;
                     if (v >= 0) {
-                        setQuantity(v);
+                        qtyState[1](v);
                     }
                 }
             }]])))), createElement("div", {
@@ -70,18 +69,11 @@ export const tooltipContent = React_functionComponent_Z336EF691((coin) => {
                 children: "Current value: $" + String(currentValue),
             })), delay(() => {
                 const matchValue = coin.price_change_percentage_24h;
-                if (matchValue == null) {
-                    return singleton(createElement("p", {
-                        children: "24h Change: N/A",
-                    }));
-                }
-                else {
-                    const change = matchValue;
-                    const formatted = String(change);
-                    return singleton(createElement("p", {
-                        children: `24h Change: ${formatted}%`,
-                    }));
-                }
+                return (matchValue == null) ? singleton(createElement("p", {
+                    children: "24h Change: N/A",
+                })) : singleton(createElement("p", {
+                    children: `24h Change: ${String(matchValue)}%`,
+                }));
             }))));
         }))));
     })))), ["children", Interop_reactApi.Children.toArray(Array.from(elems_2))])])));
@@ -126,10 +118,7 @@ export function coinCard(coin, dispatch, isSelected) {
     })), createElement("div", {
         className: "media-left",
         children: Interop_reactApi.Children.toArray(Array.from(elms)),
-    })), (elms_1 = singleton_1((xs_2 = singleton_1(["children", coin.symbol.toLocaleUpperCase()]), createElement("p", createObj(toList(delay(() => append(xs_2, delay(() => singleton(["className", join(" ", append_1(singleton_1("title"), map((arg) => toString(arg[1]), filter((tupledArg) => {
-        const v = tupledArg[0];
-        return v === "className";
-    }, map((value_33) => value_33, xs_2)))))]))))))))), createElement("div", {
+    })), (elms_1 = singleton_1((xs_2 = singleton_1(["children", coin.symbol.toLocaleUpperCase()]), createElement("p", createObj(toList(delay(() => append(xs_2, delay(() => singleton(["className", join(" ", append_1(singleton_1("title"), map((arg) => toString(arg[1]), filter((tupledArg) => (tupledArg[0] === "className"), map((value_33) => value_33, xs_2)))))]))))))))), createElement("div", {
         className: "media-content",
         children: Interop_reactApi.Children.toArray(Array.from(elms_1)),
     }))]), createElement("article", {
@@ -154,18 +143,11 @@ export function coinCard(coin, dispatch, isSelected) {
         children: `Price: $${coin.current_price}`,
     })), delay(() => {
         const matchValue = coin.price_change_percentage_24h;
-        if (matchValue == null) {
-            return singleton(createElement("p", {
-                children: "24h Change: N/A",
-            }));
-        }
-        else {
-            const change = matchValue;
-            const formatted = String(change);
-            return singleton(createElement("p", {
-                children: `24h Change: ${formatted}%`,
-            }));
-        }
+        return (matchValue == null) ? singleton(createElement("p", {
+            children: "24h Change: N/A",
+        })) : singleton(createElement("p", {
+            children: `24h Change: ${String(matchValue)}%`,
+        }));
     })))), createElement("div", {
         children: Interop_reactApi.Children.toArray(Array.from(children_3)),
     }))], ["children", Interop_reactApi.Children.toArray(Array.from(elems_4))])]))), createElement("div", createObj(ofArray([["className", "tooltip-box"], ["style", {
@@ -207,8 +189,7 @@ export function view(model, dispatch) {
         Compare: comparePrimitives,
     }))));
     filteredCoins = ((model.SortDirection.tag === 1) ? reverse(sorted(lst)) : sorted(lst));
-    const start = (model.Page * model.ItemsPerPage) | 0;
-    const pageCoins = truncate(model.ItemsPerPage, skip(start, filteredCoins));
+    const pageCoins = truncate(model.ItemsPerPage, skip(model.Page * model.ItemsPerPage, filteredCoins));
     const totalPages = ~~(((length(filteredCoins) + model.ItemsPerPage) - 1) / model.ItemsPerPage) | 0;
     return createElement("div", createObj(ofArray([["className", "container"], (elems_13 = toList(delay(() => {
         let elems, xs_1;
@@ -228,10 +209,7 @@ export function view(model, dispatch) {
             cursor: "pointer",
         }], ["onClick", (_arg) => {
             dispatch(new Msg(8, [0]));
-        }], ["children", "MarketCapF#"]]), createElement("h2", createObj(toList(delay(() => append(xs_1, delay(() => singleton(["className", join(" ", append_1(singleton_1("title"), map((arg) => toString(arg[1]), filter((tupledArg) => {
-            const v = tupledArg[0];
-            return v === "className";
-        }, map((value_22) => value_22, xs_1)))))]))))))))], ["children", Interop_reactApi.Children.toArray(Array.from(elems))])])))), delay(() => {
+        }], ["children", "MarketCapF#"]]), createElement("h2", createObj(toList(delay(() => append(xs_1, delay(() => singleton(["className", join(" ", append_1(singleton_1("title"), map((arg) => toString(arg[1]), filter((tupledArg) => (tupledArg[0] === "className"), map((value_22) => value_22, xs_1)))))]))))))))], ["children", Interop_reactApi.Children.toArray(Array.from(elems))])])))), delay(() => {
             let elms_1, elms;
             return append(singleton((elms_1 = singleton_1((elms = singleton_1(createElement("input", {
                 className: "input",
@@ -276,16 +254,10 @@ export function view(model, dispatch) {
                     children: Interop_reactApi.Children.toArray(Array.from(elms_2)),
                 })), (elms_3 = singleton_1((xs_15 = ofArray([["children", (model.SortDirection.tag === 1) ? "↓ Desc" : "↑ Asc"], ["onClick", (_arg_2) => {
                     dispatch(new Msg(3, []));
-                }]]), createElement("button", createObj(toList(delay(() => append(xs_15, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_1) => toString(arg_1[1]), filter((tupledArg_1) => {
-                    const v_3 = tupledArg_1[0];
-                    return v_3 === "className";
-                }, map((value_65) => value_65, xs_15)))))]))))))))), createElement("div", {
+                }]]), createElement("button", createObj(toList(delay(() => append(xs_15, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_1) => toString(arg_1[1]), filter((tupledArg_1) => (tupledArg_1[0] === "className"), map((value_65) => value_65, xs_15)))))]))))))))), createElement("div", {
                     className: "control",
                     children: Interop_reactApi.Children.toArray(Array.from(elms_3)),
-                }))], ["children", Interop_reactApi.Children.toArray(Array.from(elems_7))])]), createElement("div", createObj(toList(delay(() => append(xs_20, delay(() => singleton(["className", join(" ", append_1(singleton_1("field"), map((arg_2) => toString(arg_2[1]), filter((tupledArg_2) => {
-                    const v_4 = tupledArg_2[0];
-                    return v_4 === "className";
-                }, map((value_71) => value_71, xs_20)))))]))))))))), delay(() => {
+                }))], ["children", Interop_reactApi.Children.toArray(Array.from(elems_7))])]), createElement("div", createObj(toList(delay(() => append(xs_20, delay(() => singleton(["className", join(" ", append_1(singleton_1("field"), map((arg_2) => toString(arg_2[1]), filter((tupledArg_2) => (tupledArg_2[0] === "className"), map((value_71) => value_71, xs_20)))))]))))))))), delay(() => {
                     let elems_8;
                     return append(singleton(createElement("div", createObj(ofArray([["style", {
                         display: "flex",
@@ -296,15 +268,9 @@ export function view(model, dispatch) {
                         let elms_5, elms_4, xs_25, xs_29;
                         return append(singleton((elms_5 = singleton_1((elms_4 = ofArray([(xs_25 = ofArray([["children", "◀ Prev"], ["disabled", model.Page === 0], ["onClick", (_arg_5) => {
                             dispatch(new Msg(4, []));
-                        }]]), createElement("button", createObj(toList(delay(() => append(xs_25, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_3) => toString(arg_3[1]), filter((tupledArg_3) => {
-                            const v_5 = tupledArg_3[0];
-                            return v_5 === "className";
-                        }, map((value_84) => value_84, xs_25)))))])))))))), (xs_29 = ofArray([["children", "Next ▶"], ["disabled", ((model.Page + 1) * model.ItemsPerPage) >= length(filteredCoins)], ["onClick", (_arg_7) => {
+                        }]]), createElement("button", createObj(toList(delay(() => append(xs_25, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_3) => toString(arg_3[1]), filter((tupledArg_3) => (tupledArg_3[0] === "className"), map((value_84) => value_84, xs_25)))))])))))))), (xs_29 = ofArray([["children", "Next ▶"], ["disabled", ((model.Page + 1) * model.ItemsPerPage) >= length(filteredCoins)], ["onClick", (_arg_7) => {
                             dispatch(new Msg(5, []));
-                        }]]), createElement("button", createObj(toList(delay(() => append(xs_29, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_4) => toString(arg_4[1]), filter((tupledArg_4) => {
-                            const v_6 = tupledArg_4[0];
-                            return v_6 === "className";
-                        }, map((value_91) => value_91, xs_29)))))]))))))))]), createElement("div", {
+                        }]]), createElement("button", createObj(toList(delay(() => append(xs_29, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_4) => toString(arg_4[1]), filter((tupledArg_4) => (tupledArg_4[0] === "className"), map((value_91) => value_91, xs_29)))))]))))))))]), createElement("div", {
                             className: "buttons",
                             children: Interop_reactApi.Children.toArray(Array.from(elms_4)),
                         }))), createElement("div", {
@@ -320,19 +286,13 @@ export function view(model, dispatch) {
                                 padding: 20,
                                 marginTop: 40,
                                 overflowX: "auto",
-                            }], (elems_12 = [(xs_35 = singleton_1(["children", "Comparison"]), createElement("h4", createObj(toList(delay(() => append(xs_35, delay(() => singleton(["className", join(" ", append_1(singleton_1("title"), map((arg_5) => toString(arg_5[1]), filter((tupledArg_5) => {
-                                const v_7 = tupledArg_5[0];
-                                return v_7 === "className";
-                            }, map((value_113) => value_113, xs_35)))))])))))))), createElement("div", createObj(ofArray([["style", {
+                            }], (elems_12 = [(xs_35 = singleton_1(["children", "Comparison"]), createElement("h4", createObj(toList(delay(() => append(xs_35, delay(() => singleton(["className", join(" ", append_1(singleton_1("title"), map((arg_5) => toString(arg_5[1]), filter((tupledArg_5) => (tupledArg_5[0] === "className"), map((value_113) => value_113, xs_35)))))])))))))), createElement("div", createObj(ofArray([["style", {
                                 display: "flex",
                                 gap: 20 + "px ",
                                 justifyContent: "center",
                             }], (elems_11 = toList(delay(() => collect((coin_1) => (FSharpSet__Contains(model.SelectedCoins, coin_1.id) ? singleton(coinCard(coin_1, dispatch, true)) : empty()), filteredCoins))), ["children", Interop_reactApi.Children.toArray(Array.from(elems_11))])]))), (xs_40 = ofArray([["className", "is-danger"], ["children", "Clear Selection"], ["onClick", (_arg_10) => {
                                 dispatch(new Msg(7, []));
-                            }]]), createElement("button", createObj(toList(delay(() => append(xs_40, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_6) => toString(arg_6[1]), filter((tupledArg_6) => {
-                                const v_8 = tupledArg_6[0];
-                                return v_8 === "className";
-                            }, map((value_125) => value_125, xs_40)))))]))))))))], ["children", Interop_reactApi.Children.toArray(Array.from(elems_12))])])))) : empty();
+                            }]]), createElement("button", createObj(toList(delay(() => append(xs_40, delay(() => singleton(["className", join(" ", append_1(singleton_1("button"), map((arg_6) => toString(arg_6[1]), filter((tupledArg_6) => (tupledArg_6[0] === "className"), map((value_125) => value_125, xs_40)))))]))))))))], ["children", Interop_reactApi.Children.toArray(Array.from(elems_12))])])))) : empty();
                         }))));
                     }));
                 }));

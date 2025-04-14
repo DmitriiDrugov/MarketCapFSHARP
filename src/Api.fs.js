@@ -18,28 +18,22 @@ export const coinDecoder = (path_7) => ((v) => object((get$) => {
 export const decoderList = (path) => ((value) => list(uncurry2(coinDecoder), path, value));
 
 export function getCoins() {
-    return singleton.Delay(() => {
-        const url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&sparkline=true";
-        return singleton.Bind(Http_get(url), (_arg) => {
-            const statusCode = _arg[0] | 0;
-            const responseText = _arg[1];
-            if (statusCode === 200) {
-                const matchValue = fromString(uncurry2(decoderList), responseText);
-                if (matchValue.tag === 1) {
-                    const err = matchValue.fields[0];
-                    toConsole(printf("Decode error: %s"))(err);
-                    return singleton.Return(undefined);
-                }
-                else {
-                    const coins = matchValue.fields[0];
-                    return singleton.Return(coins);
-                }
-            }
-            else {
-                toConsole(printf("HTTP error: %d"))(statusCode);
+    return singleton.Delay(() => singleton.Bind(Http_get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&sparkline=true"), (_arg) => {
+        const statusCode = _arg[0] | 0;
+        if (statusCode === 200) {
+            const matchValue = fromString(uncurry2(decoderList), _arg[1]);
+            if (matchValue.tag === 1) {
+                toConsole(printf("Decode error: %s"))(matchValue.fields[0]);
                 return singleton.Return(undefined);
             }
-        });
-    });
+            else {
+                return singleton.Return(matchValue.fields[0]);
+            }
+        }
+        else {
+            toConsole(printf("HTTP error: %d"))(statusCode);
+            return singleton.Return(undefined);
+        }
+    }));
 }
 
