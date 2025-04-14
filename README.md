@@ -25,7 +25,7 @@ An interactive web application built with F# and Fable for viewing, comparing, a
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/dmitriidrugov/marketcap-fsharp.git
+git clone https://github.com/DmitriiDrugov/MarketCapFSHARP.git
 cd marketcap-fsharp
 npm install
 npm run start
