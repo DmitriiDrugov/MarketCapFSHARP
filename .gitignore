@@ -1,15 +1,9 @@
-# Build artifacts
 bin/
 obj/
 fable_modules/
 node_modules/
-
-
-# VSCode/IDE
 .vscode/
 *.user
 *.suo
-
-# OS files
 .DS_Store
 Thumbs.db

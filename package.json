@@ -1,13 +1,15 @@
 {
+  "name": "marketcap-fsharp",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://DmitriiDrugov.github.io/MarketCapFSHARP",
+  "homepage": "https://dmitriidrugov.github.io/MarketCapFSHARP",
   "scripts": {
-    "postinstall": "dotnet tool restore",
-    "start": ".fable\\fable watch src --run webpack-dev-server",
-    "build": ".fable\\fable src && webpack",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d public"
-  },
+  "postinstall": "dotnet tool restore",
+  "start": "dotnet fable watch src --run webpack-dev-server",
+  "build": "dotnet fable src && webpack",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d public"
+},
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "webpack": "^5.75.0",

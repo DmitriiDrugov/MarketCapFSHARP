@@ -1,23 +1,23 @@
-import { Union, Record } from "./fable_modules/fable-library-js.4.24.0/Types.js";
-import { bool_type, class_type, int32_type, union_type, option_type, string_type, record_type, list_type, float64_type } from "./fable_modules/fable-library-js.4.24.0/Reflection.js";
+import { Union, Record } from "./fable_modules/fable-library.4.0.0/Types.js";
+import { bool_type, class_type, int32_type, union_type, option_type, string_type, record_type, list_type, float64_type } from "./fable_modules/fable-library.4.0.0/Reflection.js";
 import { list, float, string, object } from "./fable_modules/Thoth.Json.8.0.0/Decode.fs.js";
-import { comparePrimitives, uncurry2 } from "./fable_modules/fable-library-js.4.24.0/Util.js";
-import { empty } from "./fable_modules/fable-library-js.4.24.0/List.js";
-import { empty as empty_1 } from "./fable_modules/fable-library-js.4.24.0/Set.js";
+import { comparePrimitives, uncurry } from "./fable_modules/fable-library.4.0.0/Util.js";
+import { empty } from "./fable_modules/fable-library.4.0.0/List.js";
+import { empty as empty_1 } from "./fable_modules/fable-library.4.0.0/Set.js";
 
 export class Sparkline extends Record {
-    constructor(price) {
+    "constructor"(price) {
         super();
         this.price = price;
     }
 }
 
-export function Sparkline_$reflection() {
+export function Sparkline$reflection() {
     return record_type("Model.Sparkline", [], Sparkline, () => [["price", list_type(float64_type)]]);
 }
 
 export class Coin extends Record {
-    constructor(id, symbol, name, image, current_price, market_cap, price_change_percentage_24h, sparkline_in_7d) {
+    "constructor"(id, symbol, name, image, current_price, market_cap, price_change_percentage_24h, sparkline_in_7d) {
         super();
         this.id = id;
         this.symbol = symbol;
@@ -30,8 +30,8 @@ export class Coin extends Record {
     }
 }
 
-export function Coin_$reflection() {
-    return record_type("Model.Coin", [], Coin, () => [["id", string_type], ["symbol", string_type], ["name", string_type], ["image", string_type], ["current_price", float64_type], ["market_cap", float64_type], ["price_change_percentage_24h", option_type(float64_type)], ["sparkline_in_7d", Sparkline_$reflection()]]);
+export function Coin$reflection() {
+    return record_type("Model.Coin", [], Coin, () => [["id", string_type], ["symbol", string_type], ["name", string_type], ["image", string_type], ["current_price", float64_type], ["market_cap", float64_type], ["price_change_percentage_24h", option_type(float64_type)], ["sparkline_in_7d", Sparkline$reflection()]]);
 }
 
 export const CoinModule_decoder = (path_10) => ((v_1) => object((get$) => {
@@ -42,10 +42,10 @@ export const CoinModule_decoder = (path_10) => ((v_1) => object((get$) => {
     }, path_9, v))));
 }, path_10, v_1));
 
-export const CoinModule_decoderList = (path) => ((value) => list(uncurry2(CoinModule_decoder), path, value));
+export const CoinModule_decoderList = (path) => ((value) => list(uncurry(2, CoinModule_decoder), path, value));
 
 export class SortBy extends Union {
-    constructor(tag, fields) {
+    "constructor"(tag, fields) {
         super();
         this.tag = tag;
         this.fields = fields;
@@ -55,12 +55,12 @@ export class SortBy extends Union {
     }
 }
 
-export function SortBy_$reflection() {
+export function SortBy$reflection() {
     return union_type("Model.SortBy", [], SortBy, () => [[], [], []]);
 }
 
 export class SortDirection extends Union {
-    constructor(tag, fields) {
+    "constructor"(tag, fields) {
         super();
         this.tag = tag;
         this.fields = fields;
@@ -70,12 +70,12 @@ export class SortDirection extends Union {
     }
 }
 
-export function SortDirection_$reflection() {
+export function SortDirection$reflection() {
     return union_type("Model.SortDirection", [], SortDirection, () => [[], []]);
 }
 
 export class Model extends Record {
-    constructor(Coins, SearchText, SortBy, SortDirection, Page, ItemsPerPage, SelectedCoins, IsLoading) {
+    "constructor"(Coins, SearchText, SortBy, SortDirection, Page, ItemsPerPage, SelectedCoins, IsLoading) {
         super();
         this.Coins = Coins;
         this.SearchText = SearchText;
@@ -88,8 +88,8 @@ export class Model extends Record {
     }
 }
 
-export function Model_$reflection() {
-    return record_type("Model.Model", [], Model, () => [["Coins", list_type(Coin_$reflection())], ["SearchText", string_type], ["SortBy", SortBy_$reflection()], ["SortDirection", SortDirection_$reflection()], ["Page", int32_type], ["ItemsPerPage", int32_type], ["SelectedCoins", class_type("Microsoft.FSharp.Collections.FSharpSet`1", [string_type])], ["IsLoading", bool_type]]);
+export function Model$reflection() {
+    return record_type("Model.Model", [], Model, () => [["Coins", list_type(Coin$reflection())], ["SearchText", string_type], ["SortBy", SortBy$reflection()], ["SortDirection", SortDirection$reflection()], ["Page", int32_type], ["ItemsPerPage", int32_type], ["SelectedCoins", class_type("Microsoft.FSharp.Collections.FSharpSet`1", [string_type])], ["IsLoading", bool_type]]);
 }
 
 export const initModel = new Model(empty(), "", new SortBy(2, []), new SortDirection(1, []), 0, 5, empty_1({

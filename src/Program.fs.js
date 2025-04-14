@@ -7,5 +7,5 @@ import { view } from "./View.fs.js";
 
 ProgramModule_run(Program_withReactSynchronous("root", ProgramModule_mkProgram(() => [initModel, Cmd_OfAsyncWith_perform((x_1) => {
     Cmd_OfAsync_start(x_1);
-}, fetchCoins, undefined, (x) => x)], update, view)));
+}, fetchCoins, void 0, (x) => x)], update, view)));
 

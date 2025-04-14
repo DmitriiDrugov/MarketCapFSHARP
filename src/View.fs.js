@@ -1,16 +1,16 @@
 import { useFeliz_React__React_useState_Static_1505, React_functionComponent_Z336EF691 } from "./fable_modules/Feliz.2.4.0/React.fs.js";
 import { createElement } from "react";
-import { int32ToString, comparePrimitives, equals, createObj } from "./fable_modules/fable-library-js.4.24.0/Util.js";
-import { empty, collect, map as map_1, singleton, append, delay, toList } from "./fable_modules/fable-library-js.4.24.0/Seq.js";
-import { skip, truncate, reverse, sortBy, max, min, length, mapIndexed, filter, map, append as append_1, ofArray, singleton as singleton_1 } from "./fable_modules/fable-library-js.4.24.0/List.js";
+import { int32ToString, comparePrimitives, equals, createObj } from "./fable_modules/fable-library.4.0.0/Util.js";
+import { empty, collect, map as map_1, singleton, append, delay, toList } from "./fable_modules/fable-library.4.0.0/Seq.js";
+import { skip, truncate, reverse, sortBy, max, min, length, mapIndexed, filter, map, append as append_1, ofArray, singleton as singleton_1 } from "./fable_modules/fable-library.4.0.0/List.js";
 import { Interop_reactApi } from "./fable_modules/Feliz.2.4.0/./Interop.fs.js";
-import { fromSeconds } from "./fable_modules/fable-library-js.4.24.0/TimeSpan.js";
+import { fromSeconds } from "./fable_modules/fable-library.4.0.0/TimeSpan.js";
 import { Msg } from "./Update.fs.js";
-import { printf, toText, join } from "./fable_modules/fable-library-js.4.24.0/String.js";
-import { toString } from "./fable_modules/fable-library-js.4.24.0/Types.js";
-import { rangeDouble } from "./fable_modules/fable-library-js.4.24.0/Range.js";
+import { printf, toText, join } from "./fable_modules/fable-library.4.0.0/String.js";
+import { toString } from "./fable_modules/fable-library.4.0.0/Types.js";
+import { rangeDouble } from "./fable_modules/fable-library.4.0.0/Range.js";
 import { SortBy } from "./Model.fs.js";
-import { FSharpSet__get_Count, FSharpSet__Contains } from "./fable_modules/fable-library-js.4.24.0/Set.js";
+import { FSharpSet__get_Count, FSharpSet__Contains } from "./fable_modules/fable-library.4.0.0/Set.js";
 
 export const tooltipContent = React_functionComponent_Z336EF691((coin) => {
     let elems_2;
@@ -48,12 +48,12 @@ export const tooltipContent = React_functionComponent_Z336EF691((coin) => {
                 className: "label",
                 children: "Amount",
             }), (elms = singleton_1(createElement("input", createObj(ofArray([["className", "input"], ["type", "number"], (value_30 = quantity, ["ref", (e) => {
-                if (!(e == null) && !equals(e.value, value_30)) {
+                if ((!(e == null)) && (!equals(e.value, value_30))) {
                     e.value = value_30;
                 }
             }]), ["min", 0], ["onChange", (ev) => {
                 const value_34 = ev.target.valueAsNumber;
-                if (!(value_34 == null) && !Number.isNaN(value_34)) {
+                if ((!(value_34 == null)) && (!Number.isNaN(value_34))) {
                     const v = value_34;
                     if (v >= 0) {
                         qtyState[1](v);
@@ -137,7 +137,9 @@ export function coinCard(coin, dispatch, isSelected) {
                 Compare: comparePrimitives,
             });
             const y_2 = (maxY === minY_1) ? 15 : (30 - (((v_1 - minY_1) / (maxY - minY_1)) * 30));
-            return toText(printf("%0.1f,%0.1f"))(x_1)(y_2);
+            const clo = toText(printf("%0.1f,%0.1f"));
+            const clo_1 = clo(x_1);
+            return clo_1(y_2);
         }, coin.sparkline_in_7d.price)),
     })), ["children", Interop_reactApi.Children.toArray(Array.from(elements))])]))), (children_3 = toList(delay(() => append(singleton(createElement("p", {
         children: `Price: $${coin.current_price}`,
@@ -181,16 +183,29 @@ export function view(model, dispatch) {
     const lst = filter((c) => (c.name.toLocaleLowerCase().indexOf(model.SearchText.toLocaleLowerCase()) >= 0), model.Coins);
     let sorted;
     const matchValue = model.SortBy;
-    sorted = ((matchValue.tag === 1) ? ((list_2) => sortBy((c_2) => c_2.current_price, list_2, {
-        Compare: comparePrimitives,
-    })) : ((matchValue.tag === 2) ? ((list_3) => sortBy((c_3) => c_3.market_cap, list_3, {
-        Compare: comparePrimitives,
-    })) : ((list_1) => sortBy((c_1) => c_1.name, list_1, {
-        Compare: comparePrimitives,
-    }))));
+    switch (matchValue.tag) {
+        case 1: {
+            sorted = ((list_2) => sortBy((c_2) => c_2.current_price, list_2, {
+                Compare: comparePrimitives,
+            }));
+            break;
+        }
+        case 2: {
+            sorted = ((list_3) => sortBy((c_3) => c_3.market_cap, list_3, {
+                Compare: comparePrimitives,
+            }));
+            break;
+        }
+        default: {
+            sorted = ((list_1) => sortBy((c_1) => c_1.name, list_1, {
+                Compare: comparePrimitives,
+            }));
+        }
+    }
     filteredCoins = ((model.SortDirection.tag === 1) ? reverse(sorted(lst)) : sorted(lst));
-    const pageCoins = truncate(model.ItemsPerPage, skip(model.Page * model.ItemsPerPage, filteredCoins));
-    const totalPages = ~~(((length(filteredCoins) + model.ItemsPerPage) - 1) / model.ItemsPerPage) | 0;
+    const start = (model.Page * model.ItemsPerPage) | 0;
+    const pageCoins = truncate(model.ItemsPerPage, skip(start, filteredCoins));
+    const totalPages = (~(~(((length(filteredCoins) + model.ItemsPerPage) - 1) / model.ItemsPerPage))) | 0;
     return createElement("div", createObj(ofArray([["className", "container"], (elems_13 = toList(delay(() => {
         let elems, xs_1;
         return append(singleton(createElement("div", createObj(ofArray([["style", {
@@ -228,17 +243,14 @@ export function view(model, dispatch) {
                 let xs_20, elems_7, elms_2, elems_4, elems_3, elms_3, xs_15;
                 return append(singleton((xs_20 = ofArray([["className", "has-addons"], (elems_7 = [(elms_2 = singleton_1(createElement("div", createObj(ofArray([["className", "select"], (elems_4 = [createElement("select", createObj(ofArray([["value", toString(model.SortBy)], ["onChange", (ev_1) => {
                     const v_2 = ev_1.target.value;
-                    switch (v_2) {
-                        case "Name": {
-                            dispatch(new Msg(2, [new SortBy(0, [])]));
-                            break;
-                        }
-                        case "Price": {
-                            dispatch(new Msg(2, [new SortBy(1, [])]));
-                            break;
-                        }
-                        default:
-                            dispatch(new Msg(2, [new SortBy(2, [])]));
+                    if (v_2 === "Name") {
+                        dispatch(new Msg(2, [new SortBy(0, [])]));
+                    }
+                    else if (v_2 === "Price") {
+                        dispatch(new Msg(2, [new SortBy(1, [])]));
+                    }
+                    else {
+                        dispatch(new Msg(2, [new SortBy(2, [])]));
                     }
                 }], (elems_3 = [createElement("option", {
                     value: "MarketCap",
